@@ -58,7 +58,7 @@ function renderUserList(users) {
 
 // Hàm để lấy danh sách người dùng từ máy chủ
 function fetchUsers() {
-    axios.get('http://27.118.27.43/api')
+    axios.get('http://localhost:3000/users')
         .then((response) => {
             const users = response.data;
             renderUserList(users); // Hiển thị danh sách người dùng trong giao diện
@@ -67,33 +67,20 @@ function fetchUsers() {
 }
 
 function addUser() {
-    let browser = '';
-    console.log(navigator.userAgentData)
-    if (navigator.userAgentData) {
-        const browserName = navigator.userAgentData.brands[1].brand;
-        console.log('Trình duyệt:', browserName);
-        browser = browserName;
+    axios.post('http://localhost:3000/users', {
 
-    } else {
-        console.log('Không xác định được trình duyệt.');
-        browser = "Not found";
-    }
-    if (browser) {
-        console.log(browser)
-        axios.post('http://27.118.27.43/api', {
-                browser
-            })
-            .then((response) => {
-                const sessionId = response.data.sessionId;
-                saveSessionIdToLocalStorage(sessionId); // Lưu sessionId vào localStorage
-                fetchUsers();
-            })
-            .catch((error) => console.error('Error:', error));
-    }
+        })
+        .then((response) => {
+            const sessionId = response.data.sessionId;
+            saveSessionIdToLocalStorage(sessionId); // Lưu sessionId vào localStorage
+            fetchUsers();
+        })
+        .catch((error) => console.error('Error:', error));
 }
 
+
 function removeUser(userId) {
-    axios.delete(`http://27.118.27.43/api/` + userId)
+    axios.delete(`http://localhost:3000/users/` + userId)
         .then(fetchUsers)
         .catch((error) => console.error('Error:', error));
 }
