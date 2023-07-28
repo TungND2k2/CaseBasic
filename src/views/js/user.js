@@ -92,7 +92,7 @@ function addUser() {
 }
 
 function removeUser(userId) {
-    axios.delete(`http://27.118.27.43/api/${userId}`)
+    axios.delete(`http://27.118.27.43/api/` + userId)
         .then(fetchUsers)
         .catch((error) => console.error('Error:', error));
 }
