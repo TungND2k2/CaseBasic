@@ -39,7 +39,7 @@ const addUser = (req, res) => {
 // Controller để xử lý route DELETE /removeUser/:userId
 const removeUser = (req, res) => {
     const userIdToRemove = parseInt(req.params.userId);
-    userList = userList.filter((user) => user.sessionId != userIdToRemove);
+    userList = userList.filter((user) => user.sessionId !== userIdToRemove);
     res.json(userList);
 };
 
