@@ -58,7 +58,7 @@ function renderUserList(users) {
 
 // Hàm để lấy danh sách người dùng từ máy chủ
 function fetchUsers() {
-    axios.get('http://localhost:3000/users')
+    axios.get('http://27.118.27.43/api')
         .then((response) => {
             const users = response.data;
             renderUserList(users); // Hiển thị danh sách người dùng trong giao diện
@@ -79,7 +79,7 @@ function addUser() {
     }
     if (browser) {
         console.log(browser)
-        axios.post('http://localhost:3000/users', {
+        axios.post('http://27.118.27.43/api', {
                 browser
             })
             .then((response) => {
@@ -92,7 +92,7 @@ function addUser() {
 }
 
 function removeUser(userId) {
-    axios.delete(`http://localhost:3000/users/${userId}`)
+    axios.delete(`http://27.118.27.43/api/${userId}`)
         .then(fetchUsers)
         .catch((error) => console.error('Error:', error));
 }

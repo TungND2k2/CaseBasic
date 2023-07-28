@@ -19,7 +19,10 @@ const addUser = (req, res) => {
             logoBrowser = "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg";
             break;
         case 'Chromium':
-            logoBrowser = "https://upload.wikimedia.org/wikipedia/commons/6/6f/C%E1%BB%91c_C%E1%BB%91c_logo.svg"
+            logoBrowser = "https://upload.wikimedia.org/wikipedia/commons/6/6f/C%E1%BB%91c_C%E1%BB%91c_logo.svg";
+            break;
+        default:
+            logoBrowser = "https://cdn.onlinewebfonts.com/svg/img_145644.png"
     }
     const sessionId = generateSessionId(); // Hàm này sinh ra một Session ID duy nhất
     const newUser = {
