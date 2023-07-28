@@ -117,14 +117,26 @@ body {
     padding: 0;
 }
 
+
+/* Giữ footer luôn ở dưới cùng của trang */
+
 .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     background-color: #fff;
     color: #333;
     padding: 20px;
     text-align: center;
+}
+
+
+/* Đảm bảo footer không che phủ nội dung */
+
+.main-content {
+    padding-bottom: 70px;
+    /* Thay đổi giá trị tùy thuộc vào chiều cao của footer */
 }
 
 .footer-content {
