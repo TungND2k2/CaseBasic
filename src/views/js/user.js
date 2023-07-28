@@ -68,6 +68,7 @@ function fetchUsers() {
 
 function addUser() {
     let browser = '';
+    console.log(navigator.userAgentData)
     if (navigator.userAgentData) {
         const browserName = navigator.userAgentData.brands[1].brand;
         console.log('Trình duyệt:', browserName);
@@ -92,7 +93,6 @@ function addUser() {
 }
 
 function removeUser(userId) {
-    console.log('xoa');
     axios.delete(`http://27.118.27.43/api/` + userId)
         .then(fetchUsers)
         .catch((error) => console.error('Error:', error));
