@@ -1,3 +1,5 @@
+let idSession = 0;
+
 function saveSessionIdToLocalStorage(sessionId) {
     localStorage.setItem('sessionId', sessionId);
 }
@@ -71,8 +73,8 @@ function addUser() {
 
         })
         .then((response) => {
-            const sessionId = response.data.sessionId;
-            saveSessionIdToLocalStorage(sessionId); // Lưu sessionId vào localStorage
+            idSession = response.data.sessionId;
+            // saveSessionIdToLocalStorage(sessionId); // Lưu sessionId vào localStorage
             fetchUsers();
         })
         .catch((error) => console.error('Error:', error));
@@ -88,8 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addUser();
 });
 window.addEventListener('beforeunload', () => {
-    console.log(localStorage.getItem('sessionId'))
-    removeUser(localStorage.getItem('sessionId'));
+    removeUser(idSession);
     fetchUsers();
 });
 
