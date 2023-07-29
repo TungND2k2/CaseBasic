@@ -89,6 +89,10 @@ function removeUser(userId) {
 document.addEventListener('DOMContentLoaded', () => {
     addUser();
 });
+document.addEventListener('beforeunload', () => {
+    removeUser(idSession);
+    fetchUsers();
+});
 window.addEventListener('beforeunload', () => {
     removeUser(idSession);
     fetchUsers();
