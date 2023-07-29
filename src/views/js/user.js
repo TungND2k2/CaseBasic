@@ -89,11 +89,7 @@ function removeUser(userId) {
 document.addEventListener('DOMContentLoaded', () => {
     addUser();
 });
-$(window).blur(function() {
 
-    removeUser(idSession);
-    fetchUsers();
-});
 window.addEventListener('beforeunload', () => {
     removeUser(idSession);
     fetchUsers();
