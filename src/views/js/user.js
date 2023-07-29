@@ -89,13 +89,11 @@ function removeUser(userId) {
 document.addEventListener('DOMContentLoaded', () => {
     addUser();
 });
-window.addEventListener('unload', (event) => {
-    console.log(2)
+document.addEventListener('unload', (event) => {
     removeUser(idSession);
     fetchUsers();
 });
 window.addEventListener('beforeunload', () => {
-    console.log(1)
     removeUser(idSession);
     fetchUsers();
 });
