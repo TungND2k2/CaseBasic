@@ -82,6 +82,7 @@ function addUser() {
 
 
 function removeUser(userId) {
+    localStorage.setItem('id', localStorage.getItem('sessionId'));
     return axios.delete(`http://27.118.27.43/api/${userId}`);
 }
 
@@ -94,9 +95,13 @@ window.addEventListener('beforeunload', async() => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    addUser();
-});
+let localStorageID = localStorage.getItem('sessionId');
+if (localStorageID == null || localStorageID == "") {
+    addUser()
+}
+// document.addEventListener('DOMContentLoaded', () => {
+//     addUser();
+// });
 
 
 
