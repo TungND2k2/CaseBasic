@@ -82,18 +82,23 @@ function addUser() {
 
 
 function removeUser(userId) {
-    axios.delete(`http://27.118.27.43/api/` + userId)
-        .then(fetchUsers)
-        .catch((error) => console.error('Error:', error));
+    return axios.delete(`http://27.118.27.43/api/${userId}`);
 }
+
+window.addEventListener('unload', async() => {
+    try {
+        await removeUser(idSession);
+        await fetchUsers();
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     addUser();
 });
 
-window.addEventListener('beforeunload', () => {
-    removeUser(idSession);
-    fetchUsers();
-});
+
 
 fetchUsers(); // Lấy danh sách người dùng lúc ban đầu
 
