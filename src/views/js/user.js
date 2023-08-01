@@ -85,7 +85,7 @@ function removeUser(userId) {
     return axios.delete(`http://27.118.27.43/api/${userId}`);
 }
 
-window.addEventListener('unload', async() => {
+window.addEventListener('beforeunload', async() => {
     try {
         await removeUser(sessionStorage.getItem('sessionId'));
         sessionStorage.clear();
