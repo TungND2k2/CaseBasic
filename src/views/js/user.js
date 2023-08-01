@@ -89,15 +89,13 @@ window.addEventListener('unload', async() => {
     try {
         await removeUser(idSession);
         await fetchUsers();
-        console.log("199")
-        document.addEventListener('DOMContentLoaded', () => {
-            addUser();
-        });
     } catch (error) {
         console.error('Error:', error);
     }
 });
-
+document.addEventListener('DOMContentLoaded', () => {
+    addUser();
+});
 
 
 
