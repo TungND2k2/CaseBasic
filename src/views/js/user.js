@@ -82,14 +82,19 @@ function addUser() {
 
 
 function removeUser(userId) {
-    return axios.delete(`http://27.118.27.43/api/${userId}`);
+    return axios.delete(`http://27.118.27.43/api/${userId}`, {
+
+        })
+        .then(() => {
+            sessionStorage.clear();
+            fetchUsers();
+        })
+        .catch((error) => console.error('Error:', error));
 }
 
 window.addEventListener('beforeunload', async() => {
     try {
         await removeUser(sessionStorage.getItem('sessionId'));
-        sessionStorage.clear();
-        fetchUsers();
     } catch (error) {
         console.error('Error:', error);
     }
