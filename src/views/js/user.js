@@ -82,7 +82,7 @@ function addUser() {
 
 
 function removeUser(userId) {
-    localStorage.setItem('id', localStorage.getItem('sessionId'));
+    localStorage.clear();
     return axios.delete(`http://27.118.27.43/api/${userId}`);
 }
 
