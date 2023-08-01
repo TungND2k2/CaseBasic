@@ -89,6 +89,7 @@ window.addEventListener('unload', async() => {
     try {
         await removeUser(idSession);
         await fetchUsers();
+        console.log(199)
         document.addEventListener('DOMContentLoaded', () => {
             addUser();
         });
