@@ -95,7 +95,7 @@ window.addEventListener('beforeunload', async() => {
     }
 });
 
-let localStorageID = localStorage.getItem('sessionId');
+let localStorageID = sessionStorage.getItem('sessionId');
 if (localStorageID == null || localStorageID == "") {
     addUser()
 }
