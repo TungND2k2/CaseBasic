@@ -1,7 +1,7 @@
 let idSession = 0;
 
 function saveSessionIdToLocalStorage(sessionId) {
-    localStorage.setItem('sessionId', sessionId);
+    sessionStorage.setItem('sessionId', sessionId);
 }
 
 function formatTimeAgo(timestamp) {
@@ -87,8 +87,8 @@ function removeUser(userId) {
 
 window.addEventListener('beforeunload', async() => {
     try {
-        await removeUser(localStorage.getItem('sessionId'));
-        localStorage.clear();
+        await removeUser(sessionStorage.getItem('sessionId'));
+        sessionStorage.clear();
         fetchUsers();
     } catch (error) {
         console.error('Error:', error);
