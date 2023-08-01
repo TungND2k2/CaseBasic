@@ -82,13 +82,13 @@ function addUser() {
 
 
 function removeUser(userId) {
-    localStorage.clear();
     return axios.delete(`http://27.118.27.43/api/${userId}`);
 }
 
 window.addEventListener('beforeunload', async() => {
     try {
         await removeUser(localStorage.getItem('sessionId'));
+        localStorage.clear();
         fetchUsers();
     } catch (error) {
         console.error('Error:', error);
