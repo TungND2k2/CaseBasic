@@ -73,8 +73,8 @@ function addUser() {
 
         })
         .then((response) => {
-            idSession = response.data.sessionId;
-            // saveSessionIdToLocalStorage(sessionId); // Lưu sessionId vào localStorage
+            let sessionId = response.data.sessionId;
+            saveSessionIdToLocalStorage(sessionId); // Lưu sessionId vào localStorage
             fetchUsers();
         })
         .catch((error) => console.error('Error:', error));
@@ -87,7 +87,7 @@ function removeUser(userId) {
 
 window.addEventListener('beforeunload', async() => {
     try {
-        await removeUser(idSession);
+        await removeUser(localStorage.getItem('sessionId'));
         fetchUsers();
     } catch (error) {
         console.error('Error:', error);
