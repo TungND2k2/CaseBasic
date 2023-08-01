@@ -1,5 +1,4 @@
 let idSession = 0;
-let id = 0;
 
 function saveSessionIdToLocalStorage(sessionId) {
     localStorage.setItem('sessionId', sessionId);
@@ -86,19 +85,18 @@ function removeUser(userId) {
     return axios.delete(`http://27.118.27.43/api/${userId}`);
 }
 
-window.addEventListener('unload', async() => {
+window.addEventListener('beforeunload', async() => {
     try {
-        id = idSession;
         await removeUser(idSession);
         fetchUsers();
     } catch (error) {
         console.error('Error:', error);
     }
 });
+
 document.addEventListener('DOMContentLoaded', () => {
     addUser();
 });
-
 
 
 
