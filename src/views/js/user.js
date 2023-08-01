@@ -1,4 +1,5 @@
 let idSession = 0;
+let id = 0;
 
 function saveSessionIdToLocalStorage(sessionId) {
     localStorage.setItem('sessionId', sessionId);
@@ -87,14 +88,17 @@ function removeUser(userId) {
 
 window.addEventListener('unload', async() => {
     try {
+        id = idSession;
         await removeUser(idSession);
-        await fetchUsers();
+        fetchUsers();
     } catch (error) {
         console.error('Error:', error);
     }
 });
 document.addEventListener('DOMContentLoaded', () => {
-    addUser();
+    if (id != idSession) {
+        addUser();
+    }
 });
 
 
