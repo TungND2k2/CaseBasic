@@ -106,4 +106,4 @@ if (localStorageID == null || localStorageID == "") {
 
 fetchUsers(); // Lấy danh sách người dùng lúc ban đầu
 
-setInterval(fetchUsers, 5000); // Cập nhật danh sách người dùng mỗi 5 giây
+setInterval(fetchUsers, 2000); // Cập nhật danh sách người dùng mỗi 5 giây
