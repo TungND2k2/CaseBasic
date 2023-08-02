@@ -88,20 +88,20 @@ function removeUser(userId) {
 window.addEventListener('beforeunload', async() => {
     try {
         await removeUser(sessionStorage.getItem('sessionId'));
-        // sessionStorage.clear();
+        sessionStorage.clear();
         fetchUsers();
     } catch (error) {
         console.error('Error:', error);
     }
 });
 
-// let localStorageID = sessionStorage.getItem('sessionId');
-// if (localStorageID == null || localStorageID == "") {
-//     addUser()
-// }
-document.addEventListener('DOMContentLoaded', () => {
-    addUser();
-});
+let localStorageID = sessionStorage.getItem('sessionId');
+if (localStorageID == null || localStorageID == "") {
+    addUser()
+}
+// document.addEventListener('DOMContentLoaded', () => {
+//     addUser();
+// });
 
 
 fetchUsers(); // Lấy danh sách người dùng lúc ban đầu
