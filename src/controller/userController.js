@@ -2,6 +2,7 @@ const { generateSessionId, generateUserId } = require('../service/function');
 
 let userList = [];
 
+// hàm gọi ra danh sách
 const getUsers = (req, res) => {
     try {
         return res.status(200).json(userList);
@@ -10,6 +11,7 @@ const getUsers = (req, res) => {
     }
 };
 
+// hàm thêm
 const addUser = (req, res) => {
     try {
         const userAgentData = req.useragent;
@@ -45,6 +47,7 @@ const addUser = (req, res) => {
     }
 };
 
+// hàm xóa
 const removeUser = (req, res) => {
     try {
         const userIdToRemove = parseInt(req.params.userId);

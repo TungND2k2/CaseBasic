@@ -1,9 +1,11 @@
 let idSession = 0;
 
+// hàm lưu sessionStorage
 function saveSessionIdToLocalStorage(sessionId) {
     sessionStorage.setItem('sessionId', sessionId);
 }
 
+// hàm chỉnh thời gian
 function formatTimeAgo(timestamp) {
     const currentTime = Date.now();
     const timeDifference = currentTime - timestamp;
@@ -22,6 +24,7 @@ function formatTimeAgo(timestamp) {
     }
 }
 
+// hàm render ra bảng danh sách người dùng
 function renderUserList(users) {
     const userListElement = document.getElementById('userList');
     userListElement.innerHTML = ''; // Xóa danh sách người dùng hiện tại
@@ -68,6 +71,7 @@ function fetchUsers() {
         .catch((error) => console.error('Error:', error));
 }
 
+// Hàm để thêm người danh sách người dùng từ máy chủ
 function addUser() {
     axios.post('http://27.118.27.43/api', {
 
@@ -80,11 +84,12 @@ function addUser() {
         .catch((error) => console.error('Error:', error));
 }
 
-
+// Hàm để xóa người dùng ra  danh sách người dùng từ máy chủ
 function removeUser(userId) {
     return axios.delete(`http://27.118.27.43/api/${userId}`);
 }
 
+// bắt sự kiện khi người dùng f5
 window.addEventListener('beforeunload', async() => {
     try {
         await removeUser(sessionStorage.getItem('sessionId'));
@@ -95,6 +100,7 @@ window.addEventListener('beforeunload', async() => {
     }
 });
 
+// bắt sự kiện khi thêm người dùng khi f5 hoặc khi vào web
 let localStorageID = sessionStorage.getItem('sessionId');
 if (localStorageID == null || localStorageID == "") {
     addUser()
