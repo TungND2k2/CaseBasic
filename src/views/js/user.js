@@ -1,7 +1,7 @@
 let idSession = 0;
 
 function saveSessionIdToLocalStorage(sessionId) {
-    sessionStorage.setItem('sessionId', sessionId);
+    localStorage.setItem('sessionId', sessionId);
 }
 
 function formatTimeAgo(timestamp) {
@@ -87,22 +87,21 @@ function removeUser(userId) {
 
 window.addEventListener('beforeunload', async() => {
     try {
-        await removeUser(sessionStorage.getItem('sessionId'));
-        sessionStorage.clear();
+        await removeUser(localStorage.getItem('sessionId'));
+        localStorage.clear();
         fetchUsers();
     } catch (error) {
         console.error('Error:', error);
     }
 });
 
-let localStorageID = sessionStorage.getItem('sessionId');
+let localStorageID = localStorage.getItem('sessionId');
 if (localStorageID == null || localStorageID == "") {
     addUser()
 }
 // document.addEventListener('DOMContentLoaded', () => {
 //     addUser();
 // });
-
 
 
 fetchUsers(); // Lấy danh sách người dùng lúc ban đầu
