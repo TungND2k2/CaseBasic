@@ -1,7 +1,7 @@
 let idSession = 0;
 
 function saveSessionIdToLocalStorage(sessionId) {
-    localStorage.setItem('sessionId', sessionId);
+    sessionStorage.setItem('sessionId', sessionId);
 }
 
 function formatTimeAgo(timestamp) {
@@ -87,15 +87,15 @@ function removeUser(userId) {
 
 window.addEventListener('beforeunload', async() => {
     try {
-        await removeUser(localStorage.getItem('sessionId'));
-        localStorage.clear();
+        await removeUser(sessionStorage.getItem('sessionId'));
+        sessionStorage.clear();
         fetchUsers();
     } catch (error) {
         console.error('Error:', error);
     }
 });
 
-let localStorageID = localStorage.getItem('sessionId');
+let localStorageID = sessionStorage.getItem('sessionId');
 if (localStorageID == null || localStorageID == "") {
     addUser()
 }
@@ -106,4 +106,4 @@ if (localStorageID == null || localStorageID == "") {
 
 fetchUsers(); // Lấy danh sách người dùng lúc ban đầu
 
-setInterval(fetchUsers, 2000); // Cập nhật danh sách người dùng mỗi 5 giây
+setInterval(fetchUsers, 5000); // Cập nhật danh sách người dùng mỗi 5 giây
