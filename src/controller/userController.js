@@ -48,7 +48,7 @@ const addUser = (req, res) => {
 const removeUser = (req, res) => {
     try {
         const userIdToRemove = parseInt(req.params.userId);
-        userList = userList.filter((user) => user.id !== userIdToRemove);
+        userList = userList.filter((user) => user.id != userIdToRemove);
         return res.status(200).json(userList);
     } catch (err) {
         return res.status(500).json({ error: 'Internal Server Error' });
